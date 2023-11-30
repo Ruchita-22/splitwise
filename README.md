@@ -7,5 +7,5 @@ In this we try to create splitwise application
     SEARCH.md 
         other things which we searched while making this project
 
-<img alt="Local Image" src="src/main/resources/static/images/splitwise_class_diagram.png"/>
+<img alt="Local Image" src="src/main/resources/static/images/splitwise.png"/>
 
