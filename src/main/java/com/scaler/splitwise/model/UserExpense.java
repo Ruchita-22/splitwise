@@ -1,22 +1,19 @@
 package com.scaler.splitwise.model;
 
 import com.scaler.splitwise.model.enums.UserExpenseType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
 @Entity
 public class UserExpense extends BaseModel {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
     //1 user expense paid by or had to pay , like A has to pay to B, C, D , so A involve in many expense
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Expense expense;
 
     private double amount;

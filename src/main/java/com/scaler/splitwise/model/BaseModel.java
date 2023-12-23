@@ -10,17 +10,17 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.util.Date;
 
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
 @MappedSuperclass
 public class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @CreatedDate
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date cretaedAt;
-    @LastModifiedDate
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
+//    @CreatedDate
+//    @Temporal(value = TemporalType.TIMESTAMP)
+//    private Date cretaedAt;
+//    @LastModifiedDate
+//    @Temporal(value = TemporalType.TIMESTAMP)
+//    private Date lastModifiedDate;
 
 }

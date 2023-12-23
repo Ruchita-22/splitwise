@@ -8,15 +8,15 @@ Mapping
 first L->R
 second R->L
 
-    User Expense
+    User Expense    uni 
     1:M       
     M:1   
 
-    User Group
+    User Group  uni
     1:M
     M:1
 
-    Group Expense
+    Group Expense   bi
     1:M
     1:1
     

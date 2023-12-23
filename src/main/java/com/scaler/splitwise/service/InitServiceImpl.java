@@ -10,23 +10,23 @@ import com.scaler.splitwise.repository.ExpenseRepository;
 import com.scaler.splitwise.repository.GroupRepository;
 import com.scaler.splitwise.repository.UserExpenseRepository;
 import com.scaler.splitwise.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class InitServiceImpl implements InitService{
+    @Autowired
     UserRepository userRepository;
+    @Autowired
     GroupRepository groupRepository;
+    @Autowired
     ExpenseRepository expenseRepository;
+    @Autowired
     UserExpenseRepository userExpenseRepository;
 
-    public InitServiceImpl(UserRepository userRepository, GroupRepository groupRepository, ExpenseRepository expenseRepository, UserExpenseRepository userExpenseRepository) {
-        this.userRepository = userRepository;
-        this.groupRepository = groupRepository;
-        this.expenseRepository = expenseRepository;
-        this.userExpenseRepository = userExpenseRepository;
-    }
+
 
     @Override
     public void initialise() {
@@ -51,56 +51,53 @@ public class InitServiceImpl implements InitService{
         user4.setEmail("d@gmail.com");
         user4.setPhoneNUMBER("9818797930");
 
-        //save all user
-        user1 = userRepository.save(user1);
-        user2 = userRepository.save(user2);
-        user3 = userRepository.save(user3);
-        user4 = userRepository.save(user4);
 
         //create group and save
         Group group = new Group();
         group.setDescription("Friends who never pay back on time");
         group.setName("Trip to Manali");
         group.setUsers(List.of(user1, user2, user3, user4));
-
-        group =  groupRepository.save(group);
+        groupRepository.save(group);
 
         UserExpense userExpense = new UserExpense();
         userExpense.setUser(user1);
         userExpense.setAmount(1000);
         userExpense.setUserExpenseType(UserExpenseType.PAID_BY);
 
-        userExpense = userExpenseRepository.save(userExpense);
+        UserExpense userExpense5 = new UserExpense();
+        userExpense5.setUser(user2);
+        userExpense5.setAmount(1000);
+        userExpense5.setUserExpenseType(UserExpenseType.PAID_BY);
 
         UserExpense userExpense1 = new UserExpense();
         userExpense1.setUser(user1);
-        userExpense1.setAmount(250);
+        userExpense1.setAmount(500);
         userExpense1.setUserExpenseType(UserExpenseType.HAS_TO_PAY);
-        userExpense1 = userExpenseRepository.save(userExpense1);
+
 
         UserExpense userExpense2 = new UserExpense();
         userExpense2.setUser(user2);
-        userExpense2.setAmount(250);
+        userExpense2.setAmount(500);
         userExpense2.setUserExpenseType(UserExpenseType.HAS_TO_PAY);
-        userExpense2 = userExpenseRepository.save(userExpense2);
 
         UserExpense userExpense3 = new UserExpense();
         userExpense3.setUser(user3);
-        userExpense3.setAmount(250);
+        userExpense3.setAmount(500);
         userExpense3.setUserExpenseType(UserExpenseType.HAS_TO_PAY);
-        userExpense3 = userExpenseRepository.save(userExpense3);
+
 
         UserExpense userExpense4 = new UserExpense();
         userExpense4.setUser(user4);
-        userExpense4.setAmount(250);
+        userExpense4.setAmount(500);
         userExpense4.setUserExpenseType(UserExpenseType.HAS_TO_PAY);
-        userExpense4 = userExpenseRepository.save(userExpense4);
+
 
         Expense expense = new Expense();
         expense.setAmount(1000);
         expense.setDescription("Dinner");
         expense.setCurrency(Currency.INR);
-        expense.setUserExpenses(List.of(userExpense, userExpense1, userExpense2, userExpense3, userExpense4));
+        expense.setGroup(group);
+        expense.setUserExpenses(List.of(userExpense, userExpense5, userExpense1, userExpense2, userExpense3, userExpense4));
 
         expenseRepository.save(expense);
 

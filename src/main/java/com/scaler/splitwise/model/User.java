@@ -1,5 +1,6 @@
 package com.scaler.splitwise.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
@@ -8,14 +9,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
 @Entity
 public class User extends BaseModel{
     private String name;
     private String email;
     private String phoneNUMBER;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Expense> expenses;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Group> groups;
 }
